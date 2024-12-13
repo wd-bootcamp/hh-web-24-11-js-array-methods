@@ -10,7 +10,74 @@ const strings = [
   "mongoose",
   "next-auth",
   "Visual Studio Code",
+  "Array Methods",
 ];
+
+function print(text) {
+  console.log("print: " + text);
+}
+
+// for (const element of strings) {
+//   print(element);
+// }
+
+// print(strings[0])
+// print(strings[1])
+// print(strings[2])
+// print(strings[3])
+// print(strings[4])
+// print(strings[5])
+
+strings.forEach(print);
+
+// function displayTextLength(string) {
+//   console.log(string.length);
+// }
+
+// strings.forEach(displayTextLength);
+
+// anonymous function
+// strings.forEach(function (string) {
+//   console.log(string.length);
+// });
+
+strings.forEach((string) => {
+  console.log(string.length);
+});
+
+strings.forEach((brokkoli) => {
+  console.log("🥦", brokkoli.length);
+});
+
+// new array!
+const upperCaseStrings = strings.map((string) => {
+  return string.toUpperCase();
+});
+
+console.log(upperCaseStrings);
+console.log(strings);
+
+// const firstElemementWithX = strings.find((string) => {
+//   if (string.includes("x")) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// });
+
+// const firstElemementWithX = strings.find((string) => {
+//   return string.includes("x");
+// });
+
+const firstElemementWithX = strings.find((string) => string.includes("x"));
+
+console.log(firstElemementWithX);
+
+const allElementsWithX = strings.filter((string) => string.includes("x"));
+const allElementsWithoutX = strings.filter((string) => !string.includes("x"));
+
+console.log(allElementsWithX);
+console.log(allElementsWithoutX);
 
 // --- Games ---
 const gamesContainer = document.querySelector("[data-js='games-container']");
@@ -96,3 +163,43 @@ const games = [
       "Have you heard of the Extreme Laser Cats From Jupiter? Of course you have! Unfortunately, they have decided to attack earth. The Apocalypse is upon us - and it's very cute.",
   },
 ];
+
+games.forEach((gameObject) => {
+  console.log(gameObject.name);
+});
+
+const gameNames = games.map(function (gameBrok) {
+  return gameBrok.name;
+});
+console.log(gameNames);
+
+const bGames = gameNames.filter((name) => {
+  return name.includes("b");
+});
+console.log(bGames);
+
+const firstGameAfter2010 = games.find((game) => {
+  return game.publishingYear >= 2010;
+});
+console.log(firstGameAfter2010);
+
+function GameCard(gameObject) {
+  const container = document.createElement("li");
+
+  const header = document.createElement("h2");
+  header.textContent = gameObject.name;
+
+  const body = document.createElement("p");
+
+  body.textContent = `This game was published ${gameObject.publishingYear}.
+  ${gameObject.description}`;
+
+  container.append(header, body);
+
+  return container;
+}
+
+games.forEach((game) => {
+  const card = GameCard(game);
+  gamesContainer.append(card);
+});
